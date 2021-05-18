@@ -1,0 +1,25 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "This is a new line; just checking to see if I'm all linked up.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JNStayton/yelpcamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JNStayton/yelpcamp/issues"
+  },
+  "homepage": "https://github.com/JNStayton/yelpcamp#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.9"
+  }
+}
