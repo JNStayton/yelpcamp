@@ -23,8 +23,9 @@ const userRoutes = require('./routes/users');
 // const { MongoStore } = require("connect-mongo");
 const MongoStore = require('connect-mongo');
 
-//USE THIS FOR DEPLOYING -->  const dbUrl = process.env.DB_URL;
-const dbUrl = 'mongodb://localhost:27017/yelp-camp';
+// for production: 'mongodb://localhost:27017/yelp-camp';
+// for deployment: process.env.DB_URL;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -49,11 +50,13 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize())
 
+const secret = process.env.SECRET || 'squirrel'
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'squirrel'
+        secret
     }
 });
 
@@ -64,7 +67,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'secretsecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
